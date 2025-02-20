@@ -8,7 +8,7 @@ public class AgeRestrictedProduct extends Product {
 	private int minimumAge;
 	// TODO 1: constructor
 	public AgeRestrictedProduct(String name, double price, int minAge) {
-		 super(name, price, minAge);
+		 super(name, price);
 	        this.minimumAge = minAge;
 		System.out.println("Age-restricted product is created ...");
 	}
@@ -30,7 +30,6 @@ public class AgeRestrictedProduct extends Product {
 	// TODO 4: toString method
 	@Override
 	public String toString() {
-		String prosoninfo = super.toString();
-		return prosoninfo+", Minimum Age: "+minimumAge;
+		return super.toString()+", Minimum Age: "+minimumAge;
 	}
 }

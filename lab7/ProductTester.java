@@ -26,7 +26,7 @@ public class ProductTester {
 
 	public static void main(String[] args) {
 		
-		Product candy = new Product("Candy", 25.00, 0);
+		Product candy = new Product("Candy", 25.00);
 		System.out.println("Product Information");
 		System.out.println(candy.toString());
 		

@@ -54,7 +54,7 @@ public class ShoppingCart {
 	// DO NOT MODIFY MAIN
 	public static void main(String[] args) {
 		System.out.println("Creating Products");
-		Product candy = new Product("Candy", 25.00, 0);
+		Product candy = new Product("Candy", 25.00);
 		AgeRestrictedProduct wine = new AgeRestrictedProduct("Wine", 999, 21);
 		System.out.println("------------------------------------------\n");
 		

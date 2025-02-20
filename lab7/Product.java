@@ -7,9 +7,7 @@
 public class Product {
 	private String name;
 	private double price;
-	private int age;
-	public Product(String name, double price,int age) {
-		this.age = age;
+	public Product(String name, double price) {
 		this.name = name;
 		this.price = price;
 		System.out.println("Product is created ...");
