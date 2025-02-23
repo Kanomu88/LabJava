@@ -25,7 +25,7 @@ public class DateTester{
 		System.out.println("c's year is " + c.getYear() + ", which " + DateTester.strLeapYear(MyDate.isLeapYear(c.getYear())) + ".\n");
 		
 		//Uncomment this for the challenge task
-		/*
+		
 		System.out.println("Challenge Bonus ::");
 		System.out.println("a's Date: " + a.previousDay().toString());
 		System.out.println("a's Date: " + a.nextDay().toString());
@@ -43,6 +43,6 @@ public class DateTester{
 		System.out.println("c's Date: " + c.previousYear().toString());
 		System.out.println("c's Date: " + c.nextDay().toString());
 		System.out.println("c's Date: " + c.previousYear().toString());
-		*/
+		
 	}
 }

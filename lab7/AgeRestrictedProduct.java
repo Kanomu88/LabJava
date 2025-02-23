@@ -1,8 +1,6 @@
-/**
- * 
- * Modify this class to inherit from Product class
- *
- */
+//Name: Kirakorn lumlerd
+//ID : 6787089
+//Section : 1
 
 public class AgeRestrictedProduct extends Product {
 	private int minimumAge;
@@ -30,6 +28,7 @@ public class AgeRestrictedProduct extends Product {
 	// TODO 4: toString method
 	@Override
 	public String toString() {
-		return super.toString()+", Minimum Age: "+minimumAge;
+		String prosoninfo = super.toString();
+		return prosoninfo+", Minimum Age: "+minimumAge;
 	}
 }

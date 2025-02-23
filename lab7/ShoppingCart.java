@@ -1,3 +1,6 @@
+//Name: Chananchida Chongkhum
+//ID : 6787016
+//Section : 1
 
 import java.util.ArrayList;
 
@@ -5,11 +8,13 @@ public class ShoppingCart {
 	
 	private ArrayList<Product> products;
 	private int customerAge;
-	private double persontimerlimit;
-	public ShoppingCart(int customerAge,double timelimit) {
+	private double buystimer;
+	private boolean isMember;
+	public ShoppingCart(int customerAge,double buystimer,Boolean isMember) {
 		this.products = new ArrayList<Product>();
 		this.customerAge = customerAge;
-		this.persontimerlimit = timelimit;
+		this.buystimer = buystimer;
+		this.isMember = isMember;
 		System.out.println("Shopping Cart is created ... ");
 	}
 	
@@ -20,13 +25,21 @@ public class ShoppingCart {
 	public int getCustomerAge() {
 		return this.customerAge;
 	}
-
-	public void settimerlimit(double timelimit) {
-		this.persontimerlimit = timelimit;
+	
+	public void setTime(double buyTimer) {
+		this.buystimer = buyTimer;
 	}
 	
-	public double gettimerlimit() {
-		return this.persontimerlimit;
+	public double getTime() {
+		return this.buystimer;
+	}
+	
+	public void setMember(Boolean isMember) {
+		this.isMember = isMember;
+	}
+	
+	public Boolean getMember() {
+		return this.isMember;
 	}
 	
 	// TODO 5: add product
@@ -34,21 +47,30 @@ public class ShoppingCart {
 		if(product instanceof AgeRestrictedProduct) {
 			AgeRestrictedProduct resultproduct = (AgeRestrictedProduct) product;
 			if (!resultproduct.isEligible(customerAge)) {
-				System.out.println("You are not eligible to "+product.getName());
+		        System.out.println("You are not eligible to buy " + product.getName());
 				return;
 			}
 		}
-		if(product instanceof ProductTimelimit) {
-			ProductTimelimit timeresutltproduct = (ProductTimelimit) product;
-			if (!timeresutltproduct.isEligible(persontimerlimit)) {
-				System.out.println("You are not eligible to "+product.getName());
+		//bonus
+		if(product instanceof LimitProductTime) {
+			LimitProductTime resultproduct = (LimitProductTime) product;
+			if (!resultproduct.isEligible(buystimer)) {
+				System.out.println("Timelimit to buys "+product.getName());
+				return;
+			}
+		}
+		
+		if(product instanceof MemberRestrictedProduct) {
+			MemberRestrictedProduct resultproduct = (MemberRestrictedProduct) product;
+			if (!resultproduct.isEligible(isMember)) {
+                System.out.println("You must be a member to buy " + product.getName());
 				return;
 			}
 		}
 			products.add(product);
-			 System.out.println(product.getName() + " is added to the cart.");
-			 
+			System.out.println(product.getName() + " is added to the cart.");
 	}
+	
 	
 	// TODO 6: calculate total price
 	public double calculateTotalPrice() {
@@ -68,31 +90,37 @@ public class ShoppingCart {
 	// DO NOT MODIFY MAIN
 	public static void main(String[] args) {
 		System.out.println("Creating Products");
-		AgeRestrictedProduct wine = new AgeRestrictedProduct("Wine", 999, 21);
-		ProductTimelimit sangsom = new ProductTimelimit("sangsom", 650, 22.30,23.30);
 		Product candy = new Product("Candy", 25.00);
+		AgeRestrictedProduct wine = new AgeRestrictedProduct("Wine", 999, 21);
+		LimitProductTime Sangsom = new LimitProductTime("Sangsom", 650,22.3,23.5);
+		MemberRestrictedProduct Vipcard = new MemberRestrictedProduct("Vipcard", 989);
 		System.out.println("------------------------------------------\n");
 		
-		ShoppingCart cart = new ShoppingCart(20,19.00);
+		ShoppingCart cart = new ShoppingCart(20, 19.0,false);
 		cart.addProduct(candy);
 		cart.addProduct(wine);
-		cart.addProduct(sangsom);
+		cart.addProduct(Sangsom);
+		cart.addProduct(Vipcard);
 		
 		System.out.println("\nChecking out (Age:" + cart.getCustomerAge()+ ")");
-		System.out.println("\nChecking out (Time:" + cart.gettimerlimit()+ ")");
+		System.out.println("\nChecking out (Time:" + cart.getTime() + ")\n");
+		System.out.println("\nChecking out (Member:" + cart.getMember() + ")\n");
 		System.out.println("Total price: " + cart.calculateTotalPrice());
 		System.out.println("------------------------------------------\n");
 		
 		
 		cart.clear();				// clear shopping cart (remove all products in the cart)
 		cart.setCustomerAge(35);	// change the customer age to 35 years old
-		cart.settimerlimit(23.00);	
+		cart.setTime(23.3);	// change the customer age to 35 years old
+		cart.setMember(true);	// change the customer age to 35 years old
 		cart.addProduct(candy);
 		cart.addProduct(wine);
-		cart.addProduct(sangsom);
-		
+		cart.addProduct(Sangsom);
+		cart.addProduct(Vipcard);
+
 		System.out.println("\nChecking out (Age:" + cart.getCustomerAge() + ")");
-		System.out.println("\nChecking out (Time:" + cart.gettimerlimit() + ")");
+		System.out.println("\nChecking out (Time:" + cart.getTime() + ")\n");
+		System.out.println("\nChecking out (Member:" + cart.getMember() + ")\n");
 		System.out.println("Total price: " + cart.calculateTotalPrice());
 		System.out.println("------------------------------------------\n");
 		
